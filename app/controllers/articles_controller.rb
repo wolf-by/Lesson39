@@ -14,19 +14,18 @@ class ArticlesController < ApplicationController
 
   def edit
     @article = Article.find(params[:id])
-    render :edit
+   
   end  
 
   def update
     @article = Article.find(params[:id])
 
-    if @article.update(params.require(:article).permit(:title, :text))
-      flash[:success] = "Article successfully updated!"
-      redirect_to article_url(@article)
+    if @article.update(article_params)
+      redirect_to @article
     else
-      flash.now[:error] = "Article update failed"
-      render :edit
+      render action: 'edit'
     end  
+
   end
 
   
@@ -36,8 +35,8 @@ class ArticlesController < ApplicationController
 
    def create
     @article = Article.new(article_params)
-    if @article.valid?
-      @article.save
+    
+    if @article.save
       redirect_to @article
     else
       render action: 'new'
