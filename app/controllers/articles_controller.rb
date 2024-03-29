@@ -6,17 +6,12 @@ class ArticlesController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-    render :show
+   
   end
 
   def new
   end  
 
-  def list
-    @article = Article.order(:id)
-    render :list
-  end 
-  
   def edit
     @article = Article.find(params[:id])
     render :edit

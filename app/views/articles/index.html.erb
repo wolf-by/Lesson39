@@ -1,23 +1,10 @@
 <h1>Articles list:</h1>
 
-<table class="table table-hover">
+    <% @articles.each do |article| %>
 
-  <thead class="thead-dark">
-    <tr>
-      <th>Title</th>
-      <th>Id</th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @article.each do |article| %>
-      <tr>
-        <td><%= link_to article.title, article_path(article) %></td>
-        <td><%= link_to "Edit", edit_article_path(article) %></td>
-        
-        <td><%= article.id %></td>
-      </tr>
+        <h2><%= article.title %></h2>
+        <p><%= article.text %></p>
+        <p><%= link_to "Edit", edit_article_path(article) %></p>
+        <p><%= article.id %></p>
+        <hr />
     <% end %>
-  </tbody>
-
-</table>
