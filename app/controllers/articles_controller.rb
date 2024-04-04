@@ -1,5 +1,6 @@
 class ArticlesController < ApplicationController
   
+   
   def index
     @articles = Article.all
   end
@@ -41,17 +42,16 @@ class ArticlesController < ApplicationController
     end  
   end
 
-  private
-
-  def article_params
-    params.require(:article).permit(:title, :text)
-  end
-
   def destroy
     @article = Article.find(params[:id])
     @article.destroy
-    flash[:success] = "Article successfully destroyed."
-    redirect_to articles_url
+
+    redirect_to root_path, status: :see_other
   end
 
+  private
+    def article_params
+      params.require(:article).permit(:title, :text)
+    end
+ 
 end
